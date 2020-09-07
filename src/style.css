@@ -1,0 +1,9 @@
+body{
+    background-color:#a6a6a6;
+}
+.edit,.remove{
+    border: none;
+}
+.noback{
+    background-color: #a6a6a6;
+}
