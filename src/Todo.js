@@ -21,13 +21,14 @@ var RenderList=()=>{
             var input= document.createElement('input')
             input.id=`${element.id}input`
             input.value=element.content
+            input.className='todocontent'
             input.setAttribute('style','Background-color:#a6a6a6;')
             li.innerHTML='['
             li.appendChild(select)
             li.innerHTML+=`] : `
             li.appendChild(input)
             li.id=element.id
-            li.className='noback'
+            li.className='noback todoelement'
             li.appendChild(check)
      
             var {edit,del} =createEdDel(element.id)

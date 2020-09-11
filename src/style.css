@@ -1,9 +1,24 @@
 body{
     background-color:#a6a6a6;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap:5px;
 }
 .edit,.remove{
     border: none;
 }
 .noback{
     background-color: #a6a6a6;
+}
+.todocontent{
+    width: 95;
+}
+.todoelement{
+    list-style-type: none;
+}
+#TODOLIST{
+    padding-left: 5;
+}
+#TODO{
+    padding: 10;
 }

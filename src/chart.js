@@ -4,8 +4,8 @@ export var Chart=()=>{
     const svgdiv=document.getElementById('Chart')
       svgdiv.innerHTML=""
     var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    Width=450,
-    Height=450,
+    Width=400,
+    Height=400,
     width = Width - margin.left - margin.right,
     height = Height - margin.top - margin.bottom;
     var svg = d3.select("#Chart") //Create SVG item
