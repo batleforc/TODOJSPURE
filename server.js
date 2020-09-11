@@ -40,19 +40,20 @@ app.put('/TODO/:id',(req,res)=>{ //Edit
   TODO[GetIndexFromID(ID)].content=content;
   return res.status(200).json({"Status":`TODO ${ID} has been updated`})
 })
-app.post('/TODO/:id',(req,res)=>{ //Check Uncheck
+app.post('/TODO/:id/check',(req,res)=>{ //Check Uncheck
   var ID= req.params.id;
   var completed = req.body.content|false;
   var index =GetIndexFromID(ID);
   if(index==-1) return res.status(404).json({"error":"TODO not found"})
   TODO[index].completed=completed;
 })
-app.post('/TODO/:id/cat',(req,res)=>{
+app.post('/TODO/:id/cat',(req,res)=>{ //allow to assign a cat to a todo
   var ID=req.params.id;
   var cat = req.body.cat;
   var index = GetIndexFromID(ID);
   if(index==-1) return res.status(404).json({"error":"TODO not found"})
   TODO[index].cat=cat;
+  if(!Cat.includes(cat)) return res.status(404).json({"error":"Cat not found"})
   return res.status(200).json({"Status":`TODO ${ID} has been assigned to ${cat}`})
 })
 
