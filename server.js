@@ -26,6 +26,7 @@ var GetHowMuchToDoForCat=(cat)=>TODO.filter((Todo)=>Todo.cat===cat.toLowerCase()
 
 app.get('/TODO',(req,res)=>res.json(TODO)) //get the TODO array
 app.get('/CAT',(req,res)=>res.json(Cat)) //get the cat array
+app.get('/Cat/details',(req,res)=>res.json(Cat.map((value)=>{return {Cat:value,value:GetHowMuchToDoForCat(value)}})))
 app.post('/TODO',(req,res)=>{ //Create
   var content = req.body.content;
   var ID=content[0]+String(TODO.length)
@@ -46,14 +47,15 @@ app.post('/TODO/:id/check',(req,res)=>{ //Check Uncheck
   var index =GetIndexFromID(ID);
   if(index==-1) return res.status(404).json({"error":"TODO not found"})
   TODO[index].completed=completed;
+  return res.status(200).json({"Status":`TODO ${ID} has been ${completed?"check":"uncheck"}`})
 })
 app.post('/TODO/:id/cat',(req,res)=>{ //allow to assign a cat to a todo
   var ID=req.params.id;
   var cat = req.body.cat;
   var index = GetIndexFromID(ID);
   if(index==-1) return res.status(404).json({"error":"TODO not found"})
-  TODO[index].cat=cat;
   if(!Cat.includes(cat)) return res.status(404).json({"error":"Cat not found"})
+  TODO[index].cat=cat;
   return res.status(200).json({"Status":`TODO ${ID} has been assigned to ${cat}`})
 })
 
