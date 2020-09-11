@@ -45,7 +45,7 @@ var createEdDel=(id)=>{
   edit.className="edit noback"
   del.className="remove noback"
   edit.onclick=(event)=>{
-    event.target.parentElement.id
+    event.target.parentElement
   }
   del.onclick=(event)=>{
     console.log(event.target.parentElement.id)
