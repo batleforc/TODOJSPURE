@@ -1,13 +1,12 @@
 import * as Acces from './Acces'
 import {Chart} from './chart'
-var RenderList=()=>{
-    Acces.Get().then((value)=>{
+var RenderList=async ()=>{
+    Acces.Get().then(async (value)=>{
       const list=document.getElementById('TODOLIST')
       list.innerHTML=""
       var test= Math.random()
      if(value.length>0){
        value.forEach(element => {
-           console.log(element,test)
          CreateSelect(element.id,element.cat).then((select)=>{
              if(document.getElementById(element.id)) return
             var li= document.createElement('li')
@@ -15,7 +14,6 @@ var RenderList=()=>{
             check.setAttribute("type", "checkbox");
             check.checked=element.completed
             check.onchange=(event)=>{
-              console.log(event.target.checked)
               Acces.CheckOrNot(event.target.parentElement.id,event.target.checked)
             }
             var input= document.createElement('input')
@@ -39,7 +37,6 @@ var RenderList=()=>{
                 Acces.Update(element.id,event.target.value)
             })
             document.getElementById(`${element.id}select`).addEventListener('change',(event)=>{
-                console.log("test")
                 Acces.AssignToCat(event.target.parentElement.id,event.target.value)
                 RenderList();
             })
@@ -47,7 +44,7 @@ var RenderList=()=>{
        });
        
      }
-     Chart();
+     await Chart();
    })
 }
 var createEdDel=(id)=>{
@@ -65,7 +62,6 @@ var createEdDel=(id)=>{
     event.target.parentElement
   }
   del.onclick=(event)=>{
-    console.log(event.target.parentElement.id)
     Acces.Delete(id)
     RenderList()
   }

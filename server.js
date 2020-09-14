@@ -27,6 +27,8 @@ var GetHowMuchToDoForCat=(cat)=>TODO.filter((Todo)=>Todo.cat===cat.toLowerCase()
 app.get('/TODO',(req,res)=>res.json(TODO)) //get the TODO array
 app.get('/CAT',(req,res)=>res.json(Cat)) //get the cat array
 app.get('/Cat/details',(req,res)=>res.json(Cat.map((value)=>{return {Cat:value,Value:GetHowMuchToDoForCat(value)}})))
+app.get('/Cat/max',(req,res)=>res.json({Max:Math.max(...Cat.map((value)=>GetHowMuchToDoForCat(value)))}))
+app.get('/Cat/min',(req,res)=> res.json({Min:Math.min(...Cat.map((value)=>GetHowMuchToDoForCat(value)))}))
 app.post('/TODO',(req,res)=>{ //Create
   var content = req.body.content;
   var ID=content[0]+String(TODO.length)

@@ -5,6 +5,12 @@ require 'json'
 set :public_folder, __dir__ + '../dist/'
 set :port, 5001
 TODO=[]
+Cat=["urgent","perso","pro","admin","unasigned"]
+
+def GetHowMuchToDoForCat(name)
+	return TODO.select {|x| x.cat==name}
+end
+
 get '/' do #redirect to index.html
 	send_file File.join(settings.public_folder, 'index.html')
 end
@@ -12,7 +18,13 @@ end
 get '/TODO' do #read
 	return JSON.generate(TODO)
 end
+get '/CAT' do #Read Caterogie
+	return JSON.generate(TODO)
+end
 
+get '/cat/details' do
+	return JSON.generate(Cat.map{|cat| {"cat"=>cat,"Value"=>GetHowMuchToDoForCat(cat)}})
+end
 post "/TODO" do # Create
 	request.body.rewind  # in case someone already read it
 	if request.body.read.empty?
@@ -21,7 +33,7 @@ post "/TODO" do # Create
 		request.body.rewind
 		data = JSON.parse request.body.read
 		id=data["content"][0]+TODO.length.to_s
-		TODO.push({"content"=>data["content"],"id"=>id,"completed"=>false,"Date"=>Time.new})
+		TODO.push({"content"=>data["content"],"id"=>id,"completed"=>false,"Date"=>Time.new,"cat"=>"unasigned"})
 		return JSON.generate({"status"=>"TODO Created"})
 	end 
 end

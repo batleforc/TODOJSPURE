@@ -1,12 +1,21 @@
 export var Get=()=>{
- return fetch('/TODO').then(response=>response.json())
+ return fetch('/TODO').then(response=>response.json()).catch((res)=>console.log)
 }
 export var GetCAT=()=>{
-    return fetch('/CAT').then(response=>response.json())
+    return fetch('/CAT').then(response=>response.json()).catch((res)=>console.log)
 }
 export var GetCatDetails=()=>{
-    return fetch('/Cat/details').then(response=>response.json())
+    return fetch('/Cat/details').then(response=>response.json()).catch((res)=>console.log)
 }
+
+export var GetCatMax=()=>{
+    return fetch('/Cat/max').then(response=>response.json()).then(res=>res.Max).catch((res)=>console.log)
+}
+
+export var GetCatMin=()=>{
+    return fetch('/Cat/min').then(response=>response.json()).then(res=>res.Min).catch((res)=>console.log)
+}
+
 export var Create=(content)=>{
     return fetch('/TODO',{
         method:'POST',
@@ -15,7 +24,7 @@ export var Create=(content)=>{
             "Content-type": "application/json; charset=UTF-8" 
         }
         
-    }).then(Response=>Response.json())
+    }).then(Response=>Response.json()).catch((res)=>console.log)
 }
 
 export var Update=(id,content)=>{
@@ -26,7 +35,7 @@ export var Update=(id,content)=>{
             "Content-type": "application/json; charset=UTF-8" 
         }
         
-    }).then(Response=>Response.json())
+    }).then(Response=>Response.json()).catch((res)=>console.log)
 }
 export var CheckOrNot=(id,check)=>{
     return fetch(`/TODO/${id}/check`,{
@@ -36,7 +45,7 @@ export var CheckOrNot=(id,check)=>{
             "Content-type": "application/json; charset=UTF-8" 
         }
         
-    }).then(Response=>Response.json())
+    }).then(Response=>Response.json()).catch((res)=>console.log)
 }
 export var AssignToCat=(id,cat)=>{
     return fetch(`/TODO/${id}/cat`,{
@@ -46,7 +55,7 @@ export var AssignToCat=(id,cat)=>{
             "Content-type": "application/json; charset=UTF-8" 
         }
         
-    }).then(Response=>Response.json())
+    }).then(Response=>Response.json()).catch((res)=>console.log)
 }
 
 export var Delete=(id)=>{
@@ -56,7 +65,7 @@ export var Delete=(id)=>{
             "Content-type": "application/json; charset=UTF-8" 
         }
         
-    }).then(Response=>Response.json())
+    }).then(Response=>Response.json()).catch((res)=>console.log)
 }
 
 
