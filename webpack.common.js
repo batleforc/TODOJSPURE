@@ -14,7 +14,7 @@ module.exports = {
   plugins: [
     // new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
     new CleanWebpackPlugin(),
-    HtmlWebpackPluginConfig
+    HtmlWebpackPluginConfig,
   ],
   output: {
     filename: '[name].bundle.js',

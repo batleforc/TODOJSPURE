@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
+
+
 module.exports = merge(common, {
   mode: 'development',
   entry:{
@@ -19,6 +21,6 @@ module.exports = merge(common, {
     publicPath:"/"
   },
   plugins:[
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
   ]
 });

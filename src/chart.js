@@ -78,7 +78,6 @@ export var Chart=async ()=>{
             if(!event.selection) return;
             console.log(event)
             d3.select(this).transition().call(event.target.move,[event.selection[0],event.selection[1]])
-           console.log("nion")
               
           }
           })
